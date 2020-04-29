@@ -6,17 +6,22 @@ import Users from '../Users/Users';
 import StockHolding from '../StockHolding/StockHolding';
 import TradeActivity from '../TradeActivity/TradeActivity';
 import AccountBalance from '../AccountBalance/AccountBalance';
+import DashLabel from '../../components/DataLabel/DataLabel';
 
 class Dashboard extends Component {
     constructor(props) {
         super(props);        
         this.state = {
-            selectedControl: ''
+            selectedControl: '',
+            label: ''
         };
       }
     
-    dashboardControlSelectionHandler = ( action ) => {
-        this.setState({selectedControl: action});
+    dashboardControlSelectionHandler = ( action, value ) => {
+        this.setState({
+            selectedControl: action,
+            label: value
+        });
     }
 
     render () {
@@ -24,7 +29,7 @@ class Dashboard extends Component {
         let output
         switch ( selectedControl ) {
             case 'ALL_STOCKS':                
-                 output = <Stocks />;
+                 output = <Stocks />;                 
                  break;                 
             case 'ALL_USERS':                
                  output = <Users />;
@@ -44,11 +49,12 @@ class Dashboard extends Component {
 
         return (            
             <div>
-                <DashboardControl label="Stocks List" clicked={() => this.dashboardControlSelectionHandler( 'ALL_STOCKS' )} />                
-                <DashboardControl label="Stock Holding" clicked={() => this.dashboardControlSelectionHandler( 'STOCK_HOLDING' )}  />
-                <DashboardControl label="Trade Activity" clicked={() => this.dashboardControlSelectionHandler( 'TRADE_ACTIVITY')}  />
-                <DashboardControl label="Account Balance" clicked={() => this.dashboardControlSelectionHandler( 'ACCOUNT_BALANCE')}  />                                
-                <DashboardControl label="All Users" clicked={() => this.dashboardControlSelectionHandler( 'ALL_USERS' )} />
+                <DashboardControl label="Stocks List" clicked={() => this.dashboardControlSelectionHandler( 'ALL_STOCKS', 'Stock Listing' )} />                
+                <DashboardControl label="Stock Holding" clicked={() => this.dashboardControlSelectionHandler( 'STOCK_HOLDING', 'Stocks Portfolio By User' )}  />
+                <DashboardControl label="Trade Activity" clicked={() => this.dashboardControlSelectionHandler( 'TRADE_ACTIVITY', 'Trade Activity Log')}  />
+                <DashboardControl label="Account Balance" clicked={() => this.dashboardControlSelectionHandler( 'ACCOUNT_BALANCE', 'Account Balance')}  />                    
+                <DashboardControl label="All Users" clicked={() => this.dashboardControlSelectionHandler( 'ALL_USERS', 'Users Profile')} />
+                <DashLabel value={this.state.label} />
                 {output}
             </div>
         );
