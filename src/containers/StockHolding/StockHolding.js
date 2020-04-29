@@ -32,6 +32,7 @@ class StockHolding extends Component {
                <th>User ID</th>
                <th>Account ID</th>
                <th>Stock Symbol</th>
+               <th>Holding Quantity</th>
                <th>Purchase Price</th>               
             </tr>
          )
@@ -39,12 +40,13 @@ class StockHolding extends Component {
     
     renderTableData() {
         return this.state.stockHoldings.map((stockholding) => {
-           const { _user_id, _account_id, _stock_symbol, _purchase_price } = stockholding //destructuring
+           const { _user_id, _account_id, _stock_symbol, _holding_qty, _purchase_price } = stockholding //destructuring
            return (
               <tr key={_user_id}>
                  <td>{_user_id}</td>
                  <td>{_account_id}</td>
                  <td>{_stock_symbol}</td>
+                 <td>{_holding_qty}</td>
                  <td>{_purchase_price}</td>
               </tr>
            )
