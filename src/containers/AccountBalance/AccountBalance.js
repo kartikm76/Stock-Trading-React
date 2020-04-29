@@ -18,7 +18,7 @@ class AccountBalance extends Component {
             dataType: "json"
         };        
 
-        fetch ('http://127.0.0.1:5000/api/account-balance/TRD_001', options)        
+        fetch ('http://127.0.0.1:5000/api/account-balance/all', options)        
             .then(response => response.json())
             .then(data => {
                 this.setState({ AccountBalanceSeries: data })
@@ -26,12 +26,12 @@ class AccountBalance extends Component {
             })        
     }
 
-    renderTableHeader() {        
+    renderTableHeader() {
         return (
             <tr>
                <th>Account ID</th>
                <th>As of Date</th>
-               <th>Balance Amount</th>               
+               <th>Balance Amount ($)</th>               
             </tr>
          )
     }

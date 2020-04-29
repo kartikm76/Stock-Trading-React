@@ -18,7 +18,7 @@ class StockHolding extends Component {
             dataType: "json"
         };        
 
-        fetch ('http://127.0.0.1:5000/api/holding/account/TRD_001', options)        
+        fetch ('http://127.0.0.1:5000/api/holding/all', options)        
             .then(response => response.json())
             .then(data => {
                 this.setState({ stockHoldings: data })

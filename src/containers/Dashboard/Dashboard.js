@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import DashboardControl from '../../components/DashboardControl/DashboardControl';
+import Stocks from '../Stocks/Stocks';
 import Users from '../Users/Users';
 import StockHolding from '../StockHolding/StockHolding';
 import TradeActivity from '../TradeActivity/TradeActivity';
@@ -22,6 +23,9 @@ class Dashboard extends Component {
         const selectedControl = this.state.selectedControl;
         let output
         switch ( selectedControl ) {
+            case 'ALL_STOCKS':                
+                 output = <Stocks />;
+                 break;                 
             case 'ALL_USERS':                
                  output = <Users />;
                  break;
@@ -39,11 +43,12 @@ class Dashboard extends Component {
         }
 
         return (            
-            <div>                         
-                <DashboardControl label="All Users" clicked={() => this.dashboardControlSelectionHandler( 'ALL_USERS' )} />
+            <div>
+                <DashboardControl label="Stocks List" clicked={() => this.dashboardControlSelectionHandler( 'ALL_STOCKS' )} />                
                 <DashboardControl label="Stock Holding" clicked={() => this.dashboardControlSelectionHandler( 'STOCK_HOLDING' )}  />
                 <DashboardControl label="Trade Activity" clicked={() => this.dashboardControlSelectionHandler( 'TRADE_ACTIVITY')}  />
                 <DashboardControl label="Account Balance" clicked={() => this.dashboardControlSelectionHandler( 'ACCOUNT_BALANCE')}  />                                
+                <DashboardControl label="All Users" clicked={() => this.dashboardControlSelectionHandler( 'ALL_USERS' )} />
                 {output}
             </div>
         );

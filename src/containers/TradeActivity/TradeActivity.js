@@ -18,7 +18,7 @@ class TradeActivity extends Component {
             dataType: "json"
         };        
 
-        fetch ('http://127.0.0.1:5000/api/trade-activity/TRD_001', options)        
+        fetch ('http://127.0.0.1:5000/api/trade-activity/all', options)        
             .then(response => response.json())
             .then(data => {
                 this.setState({ TradeActivityList: data })
@@ -40,10 +40,12 @@ class TradeActivity extends Component {
     }
     
     renderTableData() {
-        return this.state.TradeActivityList.map((TradeActivity) => {
-           const { _account_id, _stock_symbol, _transaction_qty, _transaction_price, _transaction_type_code, _transaction_date } = TradeActivity //destructuring
+        // index is being used to define a unique key as none of the attributes being required
+        // will qualify for a natural key
+        return this.state.TradeActivityList.map((TradeActivity, index) => {
+           const { _account_id, _stock_symbol, _transaction_qty, _transaction_price, _transaction_type_code, _transaction_date } = TradeActivity //destructuring           
            return (
-              <tr key={_account_id}>
+              <tr key={index}>
                  <td>{_account_id}</td>
                  <td>{_stock_symbol}</td>
                  <td>{_transaction_qty}</td>
