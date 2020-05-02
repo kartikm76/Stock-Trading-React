@@ -12,3 +12,5 @@ Project Setup
 2. Go to /Stock-Trading-React
 3. npm install
 4. npm start (Ensure python web services are up and running successfully)
+
+It should display 5 buttons
